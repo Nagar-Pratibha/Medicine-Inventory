@@ -1,0 +1,46 @@
+/* Using global styles for card and page-container */
+
+.table-container {
+  overflow-x: auto;
+}
+table {
+  width: 100%;
+  border-collapse: collapse;
+}
+th, td {
+  padding: 16px;
+  text-align: left;
+  border-bottom: 1px solid #f1f5f9; /* Lighter border */
+}
+th {
+  background-color: #f8fafc; /* Very light gray */
+  font-weight: 500;
+  color: #64748b;
+  font-size: 0.8rem;
+  text-transform: uppercase;
+  letter-spacing: 0.5px;
+}
+td {
+  color: #334155;
+  font-weight: 500;
+}
+
+/* Badge styles */
+.badge {
+  padding: 4px 10px;
+  border-radius: 12px;
+  font-size: 0.8rem;
+  font-weight: 500;
+}
+.in-stock {
+  background-color: #dcfce7;
+  color: #16a34a;
+}
+.low-stock {
+  background-color: #fef3c7;
+  color: #d97706;
+}
+.empty-stock {
+  background-color: #fee2e2;
+  color: #dc2626;
+}

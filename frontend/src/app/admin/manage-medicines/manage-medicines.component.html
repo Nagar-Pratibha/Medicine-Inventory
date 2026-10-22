@@ -1,0 +1,120 @@
+<div class="page-container">
+  <h1>Manage Medicines ({{ allMedicines.length }})</h1>
+  <p>Add, edit, and delete medicine records from the inventory.</p>
+
+  <div class="card">
+    <div class="card-header">
+      <h2>Medicine Inventory</h2>
+      <button class="add-button" (click)="openAddDialog()">Add New Medicine</button>
+    </div>
+    <div class="table-container">
+      <table>
+        <thead>
+          <tr>
+            <th>Id</th>
+            <th>Name</th>
+            <th>Stock</th>
+            <th>Price</th>
+            <th>Description</th>
+            <th>Actions</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr *ngFor="let medicine of allMedicines">
+            <td>{{ medicine.id }}</td>
+            <td>{{ medicine.name }}</td>
+            <td>{{ medicine.stock }}</td>
+            <td>₹ {{ medicine.price.toFixed(2) }}</td>
+            <td>{{ medicine.description }}</td>
+            <td>
+              <div class="action-buttons">
+                <button class="edit-button" (click)="openEditDialog(medicine)">Edit</button>
+                <button class="delete-button" (click)="deleteMed(medicine)">Delete</button>
+              </div>
+            </td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+  </div>
+</div>
+
+<!-- Add New Medicine Dialog -->
+<div *ngIf="isAddDialogOpen" class="dialog-overlay">
+  <div class="dialog-content">
+    <h2>Add New Medicine</h2>
+    <form (ngSubmit)="onAddSubmit()" class="dialog-form">
+      <div class="input-group">
+        <label for="name">Medicine Name</label>
+        <input id="name" type="text" [(ngModel)]="addFormData.name" name="name" required>
+      </div>
+       <div class="input-group">
+        <label for="description">Description</label>
+        <input id="description" type="text" [(ngModel)]="addFormData.description" name="description">
+      </div>
+      <div class="form-row">
+        <div class="input-group">
+          <label for="price">Price</label>
+          <input id="price" type="number" [(ngModel)]="addFormData.price" name="price" required>
+        </div>
+        <div class="input-group">
+          <label for="stock">Stock</label>
+          <input id="stock" type="number" [(ngModel)]="addFormData.stock" name="stock" required>
+        </div>
+      </div>
+      <div class="form-row">
+        <div class="input-group">
+          <label for="manufacture_name">Manufacturer</label>
+          <input id="manufacture_name" type="text" [(ngModel)]="addFormData.manufacture_name" name="manufacture_name">
+        </div>
+        <div class="input-group">
+          <label for="pack_size">Pack Size</label>
+          <input id="pack_size" type="text" [(ngModel)]="addFormData.pack_size" name="pack_size">
+        </div>
+      </div>
+      <div class="input-group">
+        <label for="compositionText">Composition</label>
+        <input id="compositionText" type="text" [(ngModel)]="addFormData.category" name="compositionText" required>
+      </div>
+      <div class="dialog-actions">
+        <button type="button" class="cancel-button" (click)="closeDialogs()">Cancel</button>
+        <button type="submit" class="submit-button">Add Medicine</button>
+      </div>
+    </form>
+  </div>
+</div>
+
+<!-- Edit Medicine Dialog -->
+<div *ngIf="isEditDialogOpen" class="dialog-overlay">
+  <div class="dialog-content">
+    <h2>Edit Medicine</h2>
+    <form (ngSubmit)="onEditSubmit()" class="dialog-form">
+      <div class="input-group">
+        <label for="edit-name">Medicine Name</label>
+        <input id="edit-name" type="text" [(ngModel)]="editFormData.name" name="edit-name" required>
+      </div>
+       <div class="input-group">
+        <label for="edit-description">Description</label>
+        <input id="edit-description" type="text" [(ngModel)]="editFormData.description" name="edit-description">
+      </div>
+      <div class="form-row">
+        <div class="input-group">
+          <label for="edit-price">Price</label>
+          <input id="edit-price" type="number" [(ngModel)]="editFormData.price" name="edit-price" required>
+        </div>
+        <div class="input-group">
+          <label for="edit-stock">Stock</label>
+          <input id="edit-stock" type="number" [(ngModel)]="editFormData.stock" name="edit-stock" required>
+        </div>
+      </div>
+      <div class="input-group">
+        <label for="edit-compositionText">Composition</label>
+        <input id="edit-compositionText" type="text" [(ngModel)]="editFormData.category" name="edit-compositionText" required>
+      </div>
+      <div class="dialog-actions">
+        <button type="button" class="cancel-button" (click)="closeDialogs()">Cancel</button>
+        <button type="submit" class="submit-button">Update Medicine</button>
+      </div>
+    </form>
+  </div>
+</div>

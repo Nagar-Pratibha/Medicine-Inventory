@@ -1,0 +1,28 @@
+<div class="sidebar-container">
+  <div class="brand">
+    <div class="logo">🩺</div>
+    <div>
+      <h1>CureCart</h1>
+      <p>Inventory System</p>
+    </div>
+  </div>
+  <nav class="nav-menu">
+    <ul>
+      <li *ngFor="let item of menuItems">
+        <a [routerLink]="item.link" routerLinkActive="active-link">
+          <span class="icon">{{ item.icon }}</span>
+          {{ item.label }}
+          <span *ngIf="item.label === 'Cart' && cartItemCount > 0" class="cart-badge">
+            {{ cartItemCount }}
+          </span>
+        </a>
+      </li>
+    </ul>
+  </nav>
+  <div class="logout-section">
+    <button (click)="logout()">
+      <span class="icon">🚪</span>
+      Logout
+    </button>
+  </div>
+</div>

@@ -1,0 +1,46 @@
+<div class="page-container">
+  <h1>My Orders</h1>
+
+  <div *ngIf="isLoading" class="loading-indicator">
+    <p>Loading your orders...</p>
+  </div>
+
+  <div *ngIf="error" class="error-message">
+    <p>{{ error }}</p>
+  </div>
+
+  <div *ngIf="!isLoading && !error && orders.length === 0" class="no-orders">
+    <p>You haven't placed any orders yet.</p>
+  </div>
+
+  <div *ngIf="!isLoading && !error && orders.length > 0" class="orders-table-container">
+    <table class="orders-table">
+      <thead>
+        <tr>
+          <th>Order ID</th>
+          <th>Placed On</th>
+          <th>Items</th>
+          <th>Total Amount</th>
+          <th>Shipping Address</th>
+          <th>Status</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr *ngFor="let order of orders">
+          <td>#{{ order.orderId }}</td>
+          <td>{{ order.createdAt | date:'medium' }}</td>
+          <td>
+            <ul class="item-list">
+              <li *ngFor="let item of order.items">{{ item.medicineName }} (x{{ item.quantity }})</li>
+            </ul>
+          </td>
+          <td>{{ order.totalAmount | currency:'INR' }}</td>
+          <td>{{ formatAddress(order.address) }}</td>
+          <td>
+            <span class="status" [ngClass]="order.status.toLowerCase()">{{ order.status | titlecase }}</span>
+          </td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
+</div>

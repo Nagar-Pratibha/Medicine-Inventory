@@ -1,0 +1,98 @@
+/* Table styles from medicines-list.component.css */
+.table-container {
+  overflow-x: auto;
+}
+table {
+  width: 100%;
+  border-collapse: collapse;
+}
+th, td {
+  padding: 16px;
+  text-align: left;
+  border-bottom: 1px solid #f1f5f9; /* Lighter border */
+}
+th {
+  background-color: #f8fafc; /* Very light gray */
+  font-weight: 500;
+  color: #64748b;
+  font-size: 0.8rem;
+  text-transform: uppercase;
+  letter-spacing: 0.5px;
+}
+td {
+  color: #334155;
+  font-weight: 500;
+}
+
+/* Badge styles from medicines-list.component.css */
+.badge {
+  padding: 4px 10px;
+  border-radius: 12px;
+  font-size: 0.8rem;
+  font-weight: 500;
+}
+.in-stock {
+  background-color: #dcfce7;
+  color: #16a34a;
+}
+.low-stock {
+  background-color: #fef3c7;
+  color: #d97706;
+}
+.empty-stock {
+  background-color: #fee2e2;
+  color: #dc2626;
+}
+
+/* Action button styles */
+.add-button, .edit-button, .delete-button, .cancel-button, .submit-button {
+  border: none; padding: 8px 14px; border-radius: 6px; cursor: pointer; font-weight: 500;
+}
+.submit-button { background-color: #3b82f6; color: white; }
+.add-button {
+  background-color: #28a745; /* A nice green color */
+  color: white;
+  transition: background-color 0.2s ease-in-out, transform 0.1s ease;
+}
+.add-button:hover {
+  background-color: #218838; /* Darker green on hover */
+  transform: translateY(-1px);
+}
+
+.edit-button { background-color: #f3f4f6; color: #374151; }
+.delete-button { background-color: #fef2f2; color: #ef4444; }
+.cancel-button { background-color: #e5e7eb; color: #374151; }
+.action-buttons { display: flex; gap: 8px; }
+
+/* Card Styles */
+.card {
+  background-color: #fff;
+  border-radius: 8px;
+  box-shadow: 0 4px 8px rgba(0,0,0,0.05);
+  margin-top: 1.5rem;
+}
+
+.card-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 1rem 1.5rem;
+  border-bottom: 1px solid #f1f5f9;
+}
+
+.card-header h2 {
+  margin: 0;
+  font-size: 1.2rem;
+  color: #1e293b;
+}
+
+/* Dialog Styles */
+.dialog-overlay { position: fixed; inset: 0; background: rgba(0,0,0,0.5); display: flex; align-items: center; justify-content: center; }
+.dialog-content { background: white; padding: 24px; border-radius: 8px; width: 90%; max-width: 500px; }
+.dialog-content h2 { margin-top: 0; }
+.dialog-form { display: flex; flex-direction: column; gap: 16px; }
+.input-group { display: flex; flex-direction: column; gap: 6px; }
+.input-group label { font-weight: 500; font-size: 14px; }
+.input-group input { padding: 8px; border: 1px solid #ccc; border-radius: 4px; }
+.form-row { display: grid; grid-template-columns: 1fr 1fr; gap: 16px; }
+.dialog-actions { display: flex; justify-content: flex-end; gap: 12px; margin-top: 16px; }

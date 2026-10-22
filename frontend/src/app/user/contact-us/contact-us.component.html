@@ -1,0 +1,149 @@
+<!-- <div class="page-container">
+    <h1>Contact Us</h1>
+    <p>We'd love to hear from you. Please fill out the form below or use our contact details.</p>
+
+    <div class="contact-grid">
+        <div class="card">
+            <div class="card-header">
+                <h3>Send us a Message</h3>
+            </div>
+            <div class="card-content">
+                <form (ngSubmit)="onSendMessage()" class="form">
+                    <div class="input-group">
+                        <label for="fullName">Full Name</label>
+                        <input id="fullName" type="text" [(ngModel)]="contactForm.fullName" name="fullName" required>
+                    </div>
+                    <div class="input-group">
+                        <label for="email">Email Address</label>
+                        <input id="email" type="email" [(ngModel)]="contactForm.email" name="email" required>
+                    </div>
+                    <div class="input-group">
+                        <label for="subject">Subject</label>
+                        <input id="subject" type="text" [(ngModel)]="contactForm.subject" name="subject" required>
+                    </div>
+                    <div class="input-group">
+                        <label for="message">Message</label>
+                        <textarea id="message" rows="5" [(ngModel)]="contactForm.message" name="message"
+                            required></textarea>
+                    </div>
+                    <button type="submit" class="submit-button">Send Message</button>
+                </form>
+            </div>
+        </div>
+
+        <div class="right-column">
+            <div class="card">
+                <div class="card-header">
+                    <h3>Contact Information</h3>
+                </div>
+                <div class="card-content info-list">
+                    <div class="info-item">
+                        <span class="icon">📍</span>
+                        <div>
+                            <strong>Address:</strong>
+                            <p>123 Tech Park, Chennai, Tamil Nadu, India</p>
+                        </div>
+                    </div>
+                    <div class="info-item">
+                        <span class="icon">📞</span>
+                        <div>
+                            <strong>Phone:</strong>
+                            <p>+91 (44) 1234 5678</p>
+                        </div>
+                    </div>
+                    <div class="info-item">
+                        <span class="icon">✉️</span>
+                        <div>
+                            <strong>Email:</strong>
+                            <p ngNonBindable><span >contact@CureCart.com</span></p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div class="map-container">
+            <iframe
+                src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d124403.0076014468!2d80.17700994335937!3d12.986343700000004!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x3a525d90520b2987%3A0x8f780e8f2d57271e!2sTIDEL%20Park%20Chennai!5e0!3m2!1sen!2sin!4v1727202720123!5m2!1sen!2sin"
+                width="100%" height="100%" style="border:0;" allowfullscreen="" loading="lazy"
+                referrerpolicy="no-referrer-when-downgrade">
+            </iframe>
+        </div>
+    </div>
+</div> -->
+<div class="page-container">
+    <h1>Contact Us</h1>
+    <p>We'd love to hear from you. Please fill out the form below or use our contact details.</p>
+
+    <div class="contact-grid">
+        <!-- Left column: Contact form -->
+        <div class="card">
+            <div class="card-header">
+                <h3>Send us a Message</h3>
+            </div>
+            <div class="card-content">
+                <form (ngSubmit)="onSendMessage()" class="form">
+                    <div class="input-group">
+                        <label for="fullName">Full Name</label>
+                        <input id="fullName" type="text" [(ngModel)]="contactForm.fullName" name="fullName" required>
+                    </div>
+                    <div class="input-group">
+                        <label for="email">Email Address</label>
+                        <input id="email" type="email" [(ngModel)]="contactForm.email" name="email" required>
+                    </div>
+                    <div class="input-group">
+                        <label for="subject">Subject</label>
+                        <input id="subject" type="text" [(ngModel)]="contactForm.subject" name="subject" required>
+                    </div>
+                    <div class="input-group">
+                        <label for="message">Message</label>
+                        <textarea id="message" rows="5" [(ngModel)]="contactForm.message" name="message" required></textarea>
+                    </div>
+                    <button type="submit" class="submit-button">Send Message</button>
+                </form>
+            </div>
+        </div>
+
+        <!-- Right column: Contact info -->
+        <div class="right-column">
+            <div class="card">
+                <div class="card-header">
+                    <h3>Contact Information</h3>
+                </div>
+                <div class="card-content info-list">
+                    <div class="info-item">
+                        <span class="icon">📍</span>
+                        <div>
+                            <strong>Address:</strong>
+                            <p>123 Tech Park, Chennai, Tamil Nadu, India</p>
+                        </div>
+                    </div>
+                    <div class="info-item">
+                        <span class="icon">📞</span>
+                        <div>
+                            <strong>Phone:</strong>
+                            <p>+91 (44) 1234 5678</p>
+                        </div>
+                    </div>
+                    <div class="info-item">
+                        <span class="icon">✉️</span>
+                        <div>
+                            <strong>Email:</strong>
+                            <!-- FIX: escape @ with &#64; -->
+                            <p><a href="mailto:contact&#64;CureCart.com">contact&#64;CureCart.com</a></p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Map -->
+        <div class="map-container">
+            <iframe
+                src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d124403.0076014468!2d80.17700994335937!3d12.986343700000004!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x3a525d90520b2987%3A0x8f780e8f2d57271e!2sTIDEL%20Park%20Chennai!5e0!3m2!1sen!2sin!4v1727202720123!5m2!1sen!2sin"
+                width="100%" height="100%" style="border:0;" allowfullscreen="" loading="lazy"
+                referrerpolicy="no-referrer-when-downgrade">
+            </iframe>
+        </div>
+    </div>
+</div>

@@ -1,0 +1,38 @@
+<div class="page-container">
+  <h1>About CureCart</h1>
+
+  <section class="info-section">
+    <div class="card">
+      <div class="card-content">
+        <p>CureCart is a state-of-the-art inventory management system designed specifically for the healthcare industry. We provide a seamless, reliable, and efficient platform for hospitals, clinics, and pharmacies to manage their medical supplies, reduce waste, and ensure that critical items are always in stock when they are needed most.</p>
+      </div>
+    </div>
+  </section>
+
+  <div class="info-grid">
+    <div class="card">
+      <div class="card-content">
+        <h2>Our Mission</h2>
+        <p>Our mission is to empower healthcare providers with intelligent technology that simplifies inventory management. We aim to enhance patient safety and operational efficiency by eliminating stockouts, reducing manual errors, and providing actionable insights through data analytics.</p>
+      </div>
+    </div>
+    <div class="card">
+      <div class="card-content">
+        <h2>Why Us?</h2>
+        <p>With a deep understanding of the challenges faced in medical logistics, CureCart offers a user-centric design, real-time tracking, and predictive analytics. Our platform is secure, scalable, and designed to integrate effortlessly into your existing workflow.</p>
+      </div>
+    </div>
+  </div>
+
+  <section class="team-section">
+    <h2>Meet Our Team</h2>
+    <p>We are a dedicated team of innovators and problem-solvers passionate about improving healthcare through technology.</p>
+    <div class="team-grid">
+      <div *ngFor="let member of teamMembers" class="team-member-card">
+        <img [src]="member.imageUrl" [alt]="member.name" class="team-member-photo">
+        <h3>{{ member.name }}</h3>
+        <p>{{ member.role }}</p>
+      </div>
+    </div>
+  </section>
+</div>

@@ -1,0 +1,52 @@
+<div class="page-container">
+  <div class="cart-header">
+    <h1>Your Shopping Cart</h1>
+    <a routerLink="/browse-medicines" class="continue-shopping-link">Continue Shopping</a>
+  </div>
+
+  <div *ngIf="isLoading" class="loading-indicator">
+    <p>Loading your cart...</p>
+  </div>
+  <div *ngIf="error" class="error-message">
+    <p>{{ error }}</p>
+  </div>
+
+  <div *ngIf="!isLoading && !error">
+    <div *ngIf="cartItems.length > 0; else emptyCart" class="cart-content">
+      <div class="cart-table-container">
+        <table class="cart-table">
+          <thead>
+            <tr>
+              <th class="th-product">Product</th>
+              <th class="th-quantity">Quantity</th>
+              <th class="th-price">Unit Price</th>
+              <th class="th-subtotal">Subtotal</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr *ngFor="let item of cartItems" class="cart-item-row">
+              <td data-label="Product" class="td-product">{{ item.medicineName }}</td>
+              <td data-label="Quantity" class="td-quantity">{{ item.quantity }}</td>
+              <td data-label="Unit Price" class="td-price">{{ item.price | currency:'INR' }}</td>
+              <td data-label="Subtotal" class="td-subtotal">{{ item.subtotal | currency:'INR' }}</td>
+
+            </tr>
+          </tbody>
+        </table>
+      </div>
+
+      <div class="cart-summary">
+        <h2 class="summary-title">Order Summary</h2>
+        <div class="summary-total"><span>Grand Total</span><strong>{{ totalAmount | currency:'INR' }}</strong></div>
+        <button (click)="proceedToCheckout()" class="checkout-button">Proceed to Checkout</button>
+      </div>
+    </div>
+
+    <ng-template #emptyCart>
+      <div *ngIf="!isLoading && !error" class="empty-cart-message">
+        <p>Your cart is empty.</p>
+        <a routerLink="/browse-medicines" class="browse-link">Start Shopping</a>
+      </div>
+    </ng-template>
+  </div>
+</div>

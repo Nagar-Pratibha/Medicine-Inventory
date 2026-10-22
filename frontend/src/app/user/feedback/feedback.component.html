@@ -1,0 +1,53 @@
+<div class="page-container">
+  <div class="feedback-header">
+    <div>
+      <h1>Feedback & Reviews</h1>
+      <p>See what others are saying and share your own experience.</p>
+    </div>
+    <button (click)="openModal()" class="add-feedback-btn">Add New Feedback</button>
+  </div>
+
+  <div class="feedback-grid">
+    <div *ngFor="let feedback of feedbacks" class="card">
+      <div class="card-content">
+        <div class="feedback-info">
+          <strong>{{ feedback.name }}</strong>
+          <span>- {{ feedback.date }}</span>
+        </div>
+        <div class="star-rating">
+          <span *ngFor="let star of [1,2,3,4,5]" class="star" [class.filled]="star <= feedback.rating">★</span>
+        </div>
+        <p class="feedback-message">"{{ feedback.message }}"</p>
+      </div>
+    </div>
+  </div>
+</div>
+
+<div *ngIf="isModalOpen" class="modal-overlay" (click)="closeModal()">
+  <div class="modal-content" (click)="$event.stopPropagation()">
+    <div class="modal-header">
+      <h2>Submit Your Feedback</h2>
+      <button class="close-btn" (click)="closeModal()">×</button>
+    </div>
+    <div class="modal-body">
+      <form (ngSubmit)="onSubmitFeedback()" class="form">
+        <div class="input-group">
+          <label>Your Rating</label>
+          <div class="star-rating-input">
+            <span *ngFor="let star of [1,2,3,4,5]" 
+                  class="star" 
+                  [class.filled]="star <= newFeedback.rating" 
+                  (click)="setRating(star)">
+              ★
+            </span>
+          </div>
+        </div>
+        <div class="input-group">
+          <label for="message">Your Message</label>
+          <textarea id="message" rows="5" [(ngModel)]="newFeedback.message" name="message" required></textarea>
+        </div>
+        <button type="submit" class="submit-button">Submit Feedback</button>
+      </form>
+    </div>
+  </div>
+</div>

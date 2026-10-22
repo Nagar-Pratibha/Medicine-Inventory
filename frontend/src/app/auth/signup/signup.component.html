@@ -1,0 +1,26 @@
+<div class="auth-container">
+  <div class="auth-card">
+    <div class="header">
+      <div class="logo">🩺</div>
+      <h2>Create an Account</h2>
+    </div>
+    <form (ngSubmit)="onSubmit()" class="form">
+      <div class="input-group">
+        <label for="name">Full Name</label>
+        <input id="name" [(ngModel)]="name" name="name" type="text" placeholder="Enter your full name" required>
+      </div>
+      <div class="input-group">
+        <label for="email">Email Address</label>
+        <input id="email" [(ngModel)]="email" name="email" type="email" placeholder="Enter your email" required>
+      </div>
+      <div class="input-group">
+        <label for="password">Password</label>
+        <input id="password" [(ngModel)]="password" name="password" type="password" placeholder="Create a password" required>
+      </div>
+      <button type="submit" class="submit-button">Create Account</button>
+    </form>
+    <div class="switch-link">
+      <p>Already have an account? <a routerLink="/signin">Sign in</a></p>
+    </div>
+  </div>
+</div>

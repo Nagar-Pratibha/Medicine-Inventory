@@ -1,0 +1,35 @@
+<div class="page-container">
+  <h1>Medicines ({{ allMedicines.length }})</h1>
+  <p>Complete list of all medicines in the system</p>
+
+  <div class="card">
+    <div class="table-container">
+      <table>
+        <thead>
+          <tr>
+            <th>Id</th>
+            <th>Name</th>
+            <th>Stock</th>
+            <th>Price</th>
+            <th>Description</th>
+            <th>Availability</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr *ngFor="let medicine of allMedicines">
+            <td>{{ medicine.id }}</td>
+            <td>{{ medicine.name }}</td>
+            <td>{{ medicine.stock }}</td>
+            <td>₹ {{ medicine.price.toFixed(2) }}</td>
+            <td>{{ medicine.description }}</td>
+            <td>
+              <span class="badge" [class.empty-stock]="isEmptyStock(medicine.stock)" [class.in-stock]="!isLowStock(medicine.stock)" [class.low-stock]="isLowStock(medicine.stock)">
+                {{ isEmptyStock(medicine.stock) ? 'Out of Stock' : (isLowStock(medicine.stock) ? 'Low Stock' : 'In Stock') }}
+              </span>
+            </td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+  </div>
+</div>

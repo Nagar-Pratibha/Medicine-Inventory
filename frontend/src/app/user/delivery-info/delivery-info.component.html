@@ -1,0 +1,111 @@
+<div class="page-container">
+  <h1>Delivery Information</h1>
+  <p>Choose a delivery address for your order</p>
+
+  <div class="delivery-grid">
+    <div class="card">
+      <div class="card-header">
+        <h2>Delivery Address</h2>
+        <div class="view-toggle">
+          <button [class.active]="view === 'select'" (click)="view = 'select'">Use saved address</button>
+          <button [class.active]="view === 'add'" (click)="view = 'add'">Add new address</button>
+        </div>
+      </div>
+      <div class="card-content">
+        <div *ngIf="view === 'select'" class="address-selection">
+          <div *ngFor="let address of addresses" class="address-card"
+            [class.selected]="address.id === selectedAddressId" (click)="selectedAddressId = address.id">
+            <strong>{{ address.addressLine1 }} <span *ngIf="address.isDefault" class="default-badge">✓
+                Default</span></strong>
+            <p>{{ address.addressLine2 }}</p>
+            <p>{{ address.state }}, {{ address.postalCode }}, {{ address.country }}</p>
+          </div>
+        </div>
+
+        <div *ngIf="view === 'add'">
+          <form (ngSubmit)="onAddAddress()" class="form">
+            <div class="input-group">
+              <label for="country">Country</label>
+              <input id="country" type="text" [(ngModel)]="newAddress.country" name="country">
+            </div>
+            <div class="input-group">
+              <label for="postalCode">Postal Code</label>
+              <input id="postalCode" type="text" [(ngModel)]="newAddress.postalCode" name="postalCode" required>
+            </div>
+            <div class="input-group">
+              <label for="addressLine1">Address Line 1</label>
+              <input id="addressLine1" type="text" [(ngModel)]="newAddress.addressLine1" name="addressLine1" required>
+            </div>
+            <div class="input-group">
+              <label for="addressLine2">Address Line 2 (Optional)</label>
+              <input id="addressLine2" type="text" [(ngModel)]="newAddress.addressLine2" name="addressLine2">
+            </div>
+            <div class="input-group">
+              <label for="city">City</label>
+              <input id="city" type="text" [(ngModel)]="newAddress.city" name="city" required>
+            </div>
+            <div class="input-group">
+              <label for="state">State</label>
+              <input id="state" type="text" [(ngModel)]="newAddress.state" name="state" required>
+            </div>
+            <button type="submit" class="submit-button">Save and Use Address</button>
+          </form>
+        </div>
+      </div>
+    </div>
+
+    <div class="order-summary">
+      <div class="card">
+        <div class="card-header">
+          <h3>Order Summary</h3>
+        </div>
+        <div class="card-content">
+          <div class="summary-items">
+            <div *ngFor="let item of cartItems" class="summary-item">
+              <span>{{ item.medicineName }} (x{{ item.quantity }})</span>
+              <strong>{{ item.subtotal | currency:'INR' }}</strong>
+            </div>
+          </div>
+          <div class="summary-totals">
+            <div class="summary-line">
+              <span>Items: </span>
+              <span>{{ itemsCount }}</span>
+            </div>
+            <div class="summary-line">
+              <span>Subtotal</span>
+              <span>{{ subtotal | currency:'INR' }}</span>
+            </div>
+            <div class="summary-line">
+              <span>Tax (5%)</span>
+              <span>{{ tax | currency:'INR' }}</span>
+            </div>
+
+            <div class="summary-line grand-total">
+              <strong>Total</strong>
+              <strong>{{ total | currency:'INR' }}</strong>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div class="page-actions">
+    <button class="back-btn" routerLink="/cart">Back to Cart</button>
+    <button class="place-order-btn" (click)="placeOrder()">Place Order</button>
+  </div>
+</div>
+
+<!-- Success Toast Notification -->
+<div *ngIf="showToast" class="toast-container" [ngClass]="toastType">
+  <div class="toast-icon">
+    <!-- Success Icon -->
+    <svg *ngIf="toastType === 'success'" xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M22 11.08V12a10 10 0 1 1-5.93-9.14"></path><polyline points="22 4 12 14.01 9 11.01"></polyline></svg>
+    <!-- Error Icon -->
+    <svg *ngIf="toastType === 'error'" xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"></circle><line x1="12" y1="8" x2="12" y2="12"></line><line x1="12" y1="16" x2="12.01" y2="16"></line></svg>
+  </div>
+  <div class="toast-message">
+    {{ toastMessage }}
+  </div>
+  <div class="toast-progress"></div>
+</div>

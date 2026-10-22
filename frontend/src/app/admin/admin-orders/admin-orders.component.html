@@ -1,0 +1,143 @@
+<div class="page-container">
+  <h1>Order Dashboard</h1>
+  <p>Manage and process customer orders</p>
+
+  <div class="stats-grid">
+    <div class="stat-card">
+      <span class="stat-value orange">{{ pendingOrdersCount }}</span>
+      <span class="stat-title">Pending Orders</span>
+    </div>
+    <div class="stat-card">
+      <span class="stat-value green">{{ shippedOrdersCount }}</span>
+      <span class="stat-title">Shipped Orders</span>
+    </div>
+    <div class="stat-card">
+      <span class="stat-value blue">{{ allOrders.length }}</span>
+      <span class="stat-title">Total Orders</span>
+    </div>
+    <div class="stat-card revenue">
+      <span class="stat-value">{{ totalRevenue | currency:'INR' }}</span>
+      <span class="stat-title">Total Revenue (WIP)</span>
+    </div>
+  </div>
+
+  <!-- Pending Actions Card -->
+  <div class="card">
+    <div class="card-header">
+      <h3>Pending Actions ({{ pendingActionOrders.length }})</h3>
+      <p>Orders that require processing (shipping or cancellation)</p>
+    </div>
+    <div class="table-container">
+      <table>
+        <thead>
+          <tr>
+            <th>Order ID</th>
+            <th>Date</th>
+            <th>Total</th>
+            <th>Status</th>
+            <th>Actions</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr *ngFor="let order of pendingActionOrders">
+            <td class="order-id">#{{ order.orderId }}</td>
+            <td>{{ order.createdAt | date:'medium' }}</td>
+            <td class="total">{{ order.totalAmount | currency:'INR' }}</td>
+            <td>
+              <span class="badge" [ngClass]="order.status.toLowerCase()">{{ order.status | titlecase }}</span>
+            </td>
+            <td>
+              <div class="action-buttons">
+                <button class="action-btn ship" title="Mark as Shipped" (click)="shipOrder(order)">✓</button>
+                <button class="action-btn cancel" title="Cancel Order" (click)="cancelOrder(order)">✕</button>
+                <button class="view-btn" (click)="viewOrder(order)">View</button>
+              </div>
+            </td>
+          </tr>
+        </tbody>
+      </table>
+      <p *ngIf="pendingActionOrders.length === 0" class="empty-table-message">No pending orders to show.</p>
+    </div>
+  </div>
+
+  <!-- Processed Orders Card -->
+  <div class="card">
+    <div class="card-header">
+      <h3>Processed Orders ({{ processedOrders.length }})</h3>
+      <p>History of all shipped, delivered, or cancelled orders</p>
+    </div>
+    <div class="table-container">
+      <table>
+        <thead>
+          <tr>
+            <th>Order ID</th>
+            <th>Date</th>
+            <th>Total</th>
+            <th>Status</th>
+            <th>Actions</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr *ngFor="let order of processedOrders">
+            <td class="order-id">#{{ order.orderId }}</td>
+            <td>{{ order.createdAt | date:'medium' }}</td>
+            <td class="total">{{ order.totalAmount | currency:'INR' }}</td>
+            <td><span class="badge" [ngClass]="order.status.toLowerCase()">{{ order.status | titlecase }}</span></td>
+            <td><button class="view-btn" (click)="viewOrder(order)">View</button></td>
+          </tr>
+        </tbody>
+      </table>
+      <p *ngIf="processedOrders.length === 0" class="empty-table-message">No processed orders to show.</p>
+    </div>
+  </div>
+</div>
+
+<div *ngIf="isModalOpen" class="modal-overlay" (click)="closeModal()">
+  <div class="modal-content" (click)="$event.stopPropagation()">
+    <div *ngIf="selectedOrder" class="modal-inner">
+      <div class="modal-header">
+        <div>
+          <h2>Order Details - #{{ selectedOrder.orderId }}</h2>
+          <p>Complete information about this order</p>
+        </div>
+        <button class="close-btn" (click)="closeModal()">×</button>
+      </div>
+
+      <div class="modal-body">
+        <div class="order-info-grid">
+          <div><label>Order Date</label>
+            <p>{{ selectedOrder.createdAt | date:'full' }}</p>
+          </div>
+          <div><label>Status</label>
+            <p><span class="badge" [ngClass]="selectedOrder.status.toLowerCase()">{{ selectedOrder.status | titlecase
+                }}</span></p>
+          </div>
+          <div><label>Total Amount</label>
+            <p class="total-amount">{{ selectedOrder.totalAmount | currency:'INR' }}</p>
+          </div>
+        </div>
+        <div class="order-items">
+          <label>Order Items</label>
+          <table>
+            <thead>
+              <tr>
+                <th>Medicine</th>
+                <th>Quantity</th>
+                <th>Price</th>
+                <th>Total</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr *ngFor="let item of selectedOrder.items">
+                <td>{{ item.medicineName }}</td>
+                <td>{{ item.quantity }}</td>
+                <td>{{ item.priceAtPurchase | currency:'INR' }}</td>
+                <td class="item-total">{{ (item.quantity * (item.priceAtPurchase || 0)) | currency:'INR' }}</td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

@@ -1,0 +1,91 @@
+/* --- Main Layout --- */
+.contact-grid {
+  display: grid;
+  grid-template-columns: 2fr 1fr; /* Two columns: flexible left, smaller right */
+  gap: 24px;
+}
+
+.right-column {
+  display: flex;
+  flex-direction: column;
+  gap: 24px;
+}
+
+.card-header {
+  padding: 16px;
+  border-bottom: 1px solid #e2e8f0;
+}
+.card-header h3 {
+  font-size: 1.1rem;
+  font-weight: 600;
+  margin: 0;
+}
+.card-content {
+  padding: 24px;
+}
+
+/* --- Form Styles (Left) --- */
+.form {
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+}
+.input-group {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+}
+.input-group label {
+  font-weight: 500;
+}
+.input-group input, .input-group textarea {
+  padding: 10px;
+  border: 1px solid #cbd5e1;
+  border-radius: 6px;
+  font-family: inherit;
+  font-size: 1rem;
+}
+.input-group textarea {
+  resize: vertical;
+}
+.submit-button {
+  align-self: flex-start;
+  background-color: #3b82f6;
+  color: white;
+  border: none;
+  padding: 10px 20px;
+  border-radius: 6px;
+  font-weight: 500;
+  cursor: pointer;
+}
+
+/* --- Info List (Right) --- */
+.info-list {
+  display: flex;
+  flex-direction: column;
+  gap: 24px;
+}
+.info-item {
+  display: flex;
+  align-items: flex-start;
+  gap: 16px;
+}
+.info-item .icon {
+  font-size: 1.5rem;
+  margin-top: -2px;
+}
+.info-item strong {
+  font-weight: 600;
+}
+.info-item p {
+  color: #64748b;
+  margin: 2px 0 0 0;
+}
+
+/* --- Map Container --- */
+.map-container {
+  border-radius: 12px;
+  overflow: hidden; /* Clips the iframe corners */
+  border: 1px solid #e2e8f0;
+  flex-grow: 1; /* Fills remaining space in the column */
+}

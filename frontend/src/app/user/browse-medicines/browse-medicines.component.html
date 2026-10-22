@@ -1,0 +1,37 @@
+<div class="page-container">
+  <div class="browse-header">
+    <div class="header-text">
+      <h1>Browse Medicines</h1>
+      <p>Find and add medicines to your cart.</p>
+    </div>
+    <div class="filters">
+      <div class="search-bar">
+        <input type="text" placeholder="Search for medicines..." [(ngModel)]="searchTerm" (ngModelChange)="filterMedicines()">
+      </div>
+      <select [(ngModel)]="selectedCategory" (ngModelChange)="filterMedicines()">
+        <option *ngFor="let category of categories" [value]="category">{{ category }}</option>
+      </select>
+    </div>
+  </div>
+
+  <div class="medicines-grid">
+    <div *ngFor="let medicine of filteredMedicines; trackBy: trackByMedicineId" class="card">
+      <div class="card-content">
+        <h2 class="medicine-name">{{ medicine.name }}</h2>
+        <p class="medicine-category">{{ medicine.category }}</p>
+        <p class="medicine-description">{{ medicine.description }}</p>
+        <div class="card-footer">
+          <p class="medicine-price">₹ {{ medicine.price.toFixed(2) }}</p>
+          <div *ngIf="medicine.quantityInCart === 0; else quantityStepper" class="add-to-cart-container">
+            <button (click)="increaseQuantity(medicine)" class="add-to-cart-button">Add to Cart</button>
+          </div>
+          <ng-template #quantityStepper>
+            <div class="quantity-stepper">
+              <button (click)="decreaseQuantity(medicine)" class="stepper-btn minus">-</button><span class="quantity-display">{{ medicine.quantityInCart }}</span><button (click)="increaseQuantity(medicine)" class="stepper-btn plus">+</button>
+            </div>
+          </ng-template>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

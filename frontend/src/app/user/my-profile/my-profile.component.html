@@ -1,0 +1,101 @@
+<div class="page-container">
+  <h1>My Profile</h1>
+  <p>Manage your account information and preferences.</p>
+ 
+  <div class="profile-grid">
+    <div class="left-column">
+      <div class="card">
+        <div class="card-content profile-info">
+          <div class="avatar">CU</div>
+          <h2>{{ profile.name }}</h2>
+          <p>{{ profile.email }}</p>
+        </div>
+      </div>
+ 
+    </div>
+ 
+    <div class="right-column">
+      <div class="card">
+        <div class="card-header">
+          <h3>Delivery Addresses</h3>
+          <button class="add-address-btn" (click)="openAddAddressModal()">+ Add Address</button>
+        </div>
+        <div class="card-content">
+          <div *ngFor="let address of addresses" class="address-item">
+            <div class="address-details">
+              <strong>{{ address.addressLine1 }} <span *ngIf="address.isDefault" class="default-badge">Default</span></strong>
+              <p>{{ address.city }}{{ address.addressLine2 ? ', ' + address.addressLine2 : '' }}</p>
+              <p>{{ address.state }}, {{ address.postalCode }}, {{ address.country }}</p>
+            </div>
+            <div class="address-actions">
+              <button *ngIf="!address.isDefault" class="set-default-btn" (click)="onSetDefault(address.id)">Set Default</button>
+              <!-- <button class="delete-btn" (click)="onDeleteAddress(address.id)">🗑️</button> -->
+              <button class="delete-btn">🗑️</button>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div class="card">
+        <div class="card-header">
+          <h3>Account Settings</h3>
+        </div>
+        <div class="card-content">
+          <form (ngSubmit)="onProfileSubmit()" class="form">
+            <div class="input-group"><label for="name">Full Name</label><input id="name" type="text" [(ngModel)]="profile.name" name="name"></div>
+            <div class="input-group"><label for="email">Email Address</label><input id="email" type="email" [(ngModel)]="profile.email" name="email"></div>
+            <div class="input-group"><label for="password">New Password</label><input id="password" type="password" [(ngModel)]="profile.password" name="password" placeholder="Leave blank to keep current"></div>
+            <button type="submit" class="submit-button">Save Changes</button>
+          </form>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+ 
+<div *ngIf="isAddAddressModalOpen" class="modal-overlay" (click)="closeAddAddressModal()">
+  <div class="modal-content" (click)="$event.stopPropagation()">
+    <div class="modal-header">
+      <h2>Add New Address</h2>
+      <button class="close-btn" (click)="closeAddAddressModal()">×</button>
+    </div>
+    <div class="modal-body">
+      <form (ngSubmit)="onAddAddress()" class="form">
+        <div class="input-group">
+          <label for="country">Country</label>
+          <input id="country" type="text" [(ngModel)]="newAddress.country" name="country">
+        </div>
+        <div class="input-group">
+          <label for="postalCode">Postal Code</label>
+          <input id="postalCode" type="text" [(ngModel)]="newAddress.postalCode" name="postalCode" required>
+        </div>
+        <div class="input-group">
+          <label for="addressLine1">Address Line 1</label>
+          <input id="addressLine1" type="text" [(ngModel)]="newAddress.addressLine1" name="addressLine1" required>
+        </div>
+        <div class="input-group">
+          <label for="addressLine2">Address Line 2 (Optional)</label>
+          <input id="addressLine2" type="text" [(ngModel)]="newAddress.addressLine2" name="addressLine2">
+        </div>
+        <div class="input-group">
+          <label for="city">City</label>
+          <input id="city" type="text" [(ngModel)]="newAddress.city" name="city" required>
+        </div>
+        <div class="input-group">
+          <label for="state">State</label>
+          <input id="state" type="text" [(ngModel)]="newAddress.state" name="state" required>
+        </div>
+        <button type="submit" class="submit-button">Save Address</button>
+      </form>
+    </div>
+  </div>
+</div>
+
+<!-- Toast Notification -->
+<div *ngIf="showToast" class="toast-container" [ngClass]="toastType">
+  <div class="toast-icon">
+    <svg *ngIf="toastType === 'success'" xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M22 11.08V12a10 10 0 1 1-5.93-9.14"></path><polyline points="22 4 12 14.01 9 11.01"></polyline></svg>
+    <svg *ngIf="toastType === 'error'" xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"></circle><line x1="12" y1="8" x2="12" y2="12"></line><line x1="12" y1="16" x2="12.01" y2="16"></line></svg>
+  </div>
+  <div class="toast-message">{{ toastMessage }}</div>
+  <div class="toast-progress"></div>
+</div>

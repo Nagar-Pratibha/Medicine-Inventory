@@ -1,0 +1,297 @@
+.page-container {
+  max-width: 1100px;
+  margin: 2rem auto;
+  padding: 0 2rem;
+  font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+}
+
+h1 {
+  margin: 0 0 0.5rem 0;
+  color: #1e293b;
+}
+
+.page-container > p {
+  margin: 0 0 2rem 0;
+  color: #64748b;
+}
+
+.stats-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(180px, 1fr));
+  gap: 1.5rem;
+  margin-bottom: 2rem;
+}
+
+.stat-card {
+  background-color: #fff;
+  padding: 1.5rem;
+  border-radius: 8px;
+  border: 1px solid #e2e8f0;
+  display: flex;
+  flex-direction: column;
+}
+
+.stat-value {
+  font-size: 2rem;
+  font-weight: 700;
+  margin-bottom: 0.5rem;
+}
+
+.stat-title {
+  font-size: 0.9rem;
+  color: #64748b;
+}
+
+.orange {
+  color: #f97316;
+}
+
+.green {
+  color: #16a34a;
+}
+
+.revenue .stat-value {
+  color: #3b82f6;
+}
+
+.blue {
+  color: #3b82f6;
+}
+
+.card {
+  margin-top: 2rem;
+  box-shadow: 0 4px 8px rgba(0,0,0,0.05);
+  background-color: #fff;
+  border-radius: 8px;
+  border: 1px solid #e2e8f0;
+  overflow: hidden;
+}
+
+.card-header {
+  padding: 1rem 1.5rem;
+  border-bottom: 1px solid #f1f5f9;
+}
+
+.card-header h3 {
+  font-size: 1.2rem;
+  font-weight: 600;
+  margin: 0;
+  color: #1e293b;
+}
+
+.card-header p {
+  margin: 4px 0 0 0;
+  color: #64748b;
+  font-size: 0.9rem;
+}
+
+.table-container {
+  overflow-x: auto;
+}
+
+table {
+  width: 100%;
+  border-collapse: collapse;
+}
+
+th, td {
+  padding: 1rem 1.5rem;
+  text-align: left;
+  border-bottom: 1px solid #f1f5f9;
+  vertical-align: middle;
+}
+
+tr:last-child td {
+  border-bottom: none;
+}
+
+th {
+  background-color: #f8fafc;
+  font-weight: 500;
+  color: #64748b;
+  font-size: 0.8rem;
+  text-transform: uppercase;
+}
+
+.order-id {
+  font-weight: 600;
+  color: #475569;
+}
+
+.total {
+  font-weight: 600;
+}
+
+.action-buttons {
+  display: flex;
+  gap: 8px;
+  align-items: center;
+}
+
+.view-btn {
+  background: none;
+  border: 1px solid #cbd5e1;
+  padding: 4px 10px;
+  border-radius: 6px;
+  cursor: pointer;
+  font-weight: 500;
+  color: #475569;
+}
+
+.action-btn {
+  border: none;
+  cursor: pointer;
+  width: 28px;
+  height: 28px;
+  border-radius: 50%;
+  font-size: 1rem;
+  font-weight: bold;
+  color: white;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.action-btn.ship {
+  background-color: #28a745;
+}
+
+.action-btn.cancel {
+  background-color: #dc3545;
+  padding-bottom: 2px; /* Visual centering for the cross */
+}
+
+/* Badge Styles */
+.badge {
+  padding: 4px 10px;
+  border-radius: 12px;
+  font-size: 0.8rem;
+  font-weight: 500;
+  text-transform: capitalize;
+}
+
+.pending {
+  background-color: #fef3c7;
+  color: #d97706;
+}
+
+.shipped {
+  background-color: #d1fae5;
+  color: #059669;
+}
+.delivered {
+  background-color: #e0e7ff;
+  color: #4f46e5;
+}
+.cancelled {
+  background-color: #fee2e2;
+  color: #ef4444;
+}
+
+/* Modal Styles */
+.modal-overlay {
+  position: fixed;
+  inset: 0;
+  background: rgba(0,0,0,0.6);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  z-index: 1000;
+}
+
+.modal-content {
+  background: white;
+  border-radius: 12px;
+  width: 90%;
+  max-width: 600px;
+  box-shadow: 0 10px 25px rgba(0,0,0,0.1);
+}
+
+.modal-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-start;
+  padding: 1.25rem 1.5rem;
+  border-bottom: 1px solid #f1f5f9;
+}
+
+.modal-header h2 {
+  font-size: 1.25rem;
+  font-weight: 600;
+  margin: 0;
+}
+
+.modal-header p {
+  margin: 4px 0 0 0;
+  color: #64748b;
+}
+
+.close-btn {
+  background: none;
+  border: none;
+  font-size: 2rem;
+  cursor: pointer;
+  color: #9ca3af;
+  line-height: 1;
+  padding: 0;
+}
+
+.modal-body {
+  padding: 1.5rem;
+}
+
+.order-info-grid {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 1.25rem;
+  margin-bottom: 1.5rem;
+}
+
+.order-info-grid label {
+  font-size: 0.9rem;
+  color: #64748b;
+  display: block;
+  margin-bottom: 4px;
+}
+
+.order-info-grid p {
+  font-weight: 600;
+  color: #334155;
+  margin: 0;
+}
+
+.order-info-grid p.total-amount {
+  font-size: 1.1rem;
+}
+
+.order-items label {
+  font-size: 0.9rem;
+  color: #64748b;
+  display: block;
+  margin-bottom: 8px;
+  font-weight: 600;
+}
+
+.order-items table {
+  background-color: #f8fafc;
+  border-radius: 8px;
+  border: 1px solid #f1f5f9;
+}
+
+.order-items td, .order-items th {
+  border-bottom: 1px solid #e2e8f0;
+}
+
+.order-items tr:last-child td {
+  border-bottom: none;
+}
+
+.item-total {
+  font-weight: 500;
+}
+
+.empty-table-message {
+  padding: 2rem;
+  text-align: center;
+  color: #64748b;
+}
